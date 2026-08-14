@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI調査ノート</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <div class="site-title"><a href="index.html">AI調査ノート</a></div>
+      <div class="site-desc">いろいろなAIについて調べたことをカテゴリ別にまとめていくサイト</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2 class="section-title">カテゴリ</h2>
+    <div id="category-grid" class="category-grid"></div>
+
+    <h2 class="section-title">記事一覧</h2>
+    <div class="toolbar">
+      <input type="search" id="search-box" class="search-box" placeholder="記事を検索...">
+      <span id="filter-status" class="filter-status"></span>
+    </div>
+    <div style="height:12px"></div>
+    <div id="article-list" class="article-list"></div>
+  </main>
+
+  <footer class="site-footer">AI調査ノート</footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

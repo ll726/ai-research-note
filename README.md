@@ -1,40 +1,60 @@
 # AI調査ノート
 
-いろいろなAIについて調べたことをカテゴリ別にまとめていく静的サイト。
-ビルドツール不要で、`index.html` をブラウザで開くだけで動きます。
+いろいろなAIについて調べたことをカテゴリ別にまとめていくサイト。
+**Vite + React + TypeScript + Tailwind CSS + shadcn/ui** 構成。
+
+## サイトを表示する方法
+
+```bash
+npm run dev
+```
+
+を実行して、表示されたURL(通常 http://localhost:5173)をブラウザで開く。
+
+## 記事を追加する方法
+
+1. `src/data/articles.ts` を開く
+2. `ARTICLES` 配列の**先頭**に、ファイル内のテンプレートをコピーして記事を追加
+3. `id` は「日付+連番」(例: `20260815-01`)で重複しないようにする
+4. `category` は `CATEGORIES` にある id から選ぶ
+5. 保存すると開発サーバーが自動リロードして反映される
+
+本文(`content`)はHTMLで記述。`<p>` 段落・`<h2>` 見出し・`<ul><li>` 箇条書き・`<pre><code>` コードブロック・`<table>` 表などが使える。
+
+## カテゴリを追加する方法
+
+`src/data/articles.ts` の `CATEGORIES` 配列に1行追加するだけで自動反映。
+
+```ts
+{ id: "robot", name: "ロボティクスAI", color: "#8b5cf6", description: "説明文" },
+```
 
 ## ファイル構成
 
 ```
-index.html      … トップページ(カテゴリ一覧+記事一覧+検索)
-article.html    … 記事詳細ページ(?id=記事ID で表示)
-css/style.css   … デザイン全般
-js/data.js      … ★記事とカテゴリのデータ(普段編集するのはここだけ)
-js/main.js      … トップページの表示処理
-js/article.js   … 記事詳細ページの表示処理
+src/
+  data/articles.ts   … ★記事とカテゴリのデータ(普段編集するのはここだけ)
+  App.tsx            … ルーティング(#/ トップ、#/cat/xx 絞り込み、#/article/xx 詳細)
+  pages/Home.tsx     … トップページ(カテゴリ・検索・記事一覧)
+  pages/ArticlePage.tsx … 記事詳細ページ
+  components/        … ヘッダー・記事カードなど
+  components/ui/     … shadcn/ui コンポーネント(自動生成)
+  index.css          … テーマ・記事本文スタイル
+old-site/            … 移行前の旧静的サイト(参考用)
 ```
 
-## 記事を追加する方法
+## shadcn/ui コンポーネントの追加
 
-1. `js/data.js` を開く
-2. `ARTICLES` 配列の**先頭**に、ファイル内のテンプレートをコピーして記事を追加
-3. `id` は「日付+連番」(例: `20260815-01`)で重複しないようにする
-4. `category` は `CATEGORIES` にある id から選ぶ
-5. 保存してブラウザを再読み込み
+shadcn公式MCPサーバー設定済み(`.mcp.json`)。Claude Code で「○○コンポーネントを追加して」と頼むか、手動なら:
 
-本文(`content`)はHTMLで記述します。`<p>` 段落・`<h2>` 見出し・`<ul><li>` 箇条書き・`<pre><code>` コードブロック・`<table>` 表などが使えます。
-
-## カテゴリを追加する方法
-
-`js/data.js` の `CATEGORIES` 配列に1行追加するだけで、トップページに自動反映されます。
-
-```js
-{ id: "robot", name: "ロボティクスAI", color: "#8b5cf6", description: "説明文" },
+```bash
+npx shadcn@latest add dialog
 ```
 
-## 機能
+## 公開用ビルド
 
-- カテゴリカードをクリックすると、そのカテゴリの記事だけに絞り込み
-- 検索ボックスでタイトル・概要・本文を全文検索
-- 記事詳細ページに同カテゴリの関連記事を自動表示
-- スマホ表示対応
+```bash
+npm run build
+```
+
+`dist/` フォルダに静的ファイルが生成される(サーバーに置けば公開可能)。
