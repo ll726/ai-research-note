@@ -9,7 +9,9 @@
 npm run dev
 ```
 
-を実行して、表示されたURL(通常 http://localhost:5173)をブラウザで開く。
+を実行して http://localhost:5310 をブラウザで開く。
+
+ポートは他プロジェクトと衝突しないよう `vite.config.ts` で **5310番に固定**している(ビルド結果のプレビュー `npm run preview` は5311番)。もし5310が埋まっていた場合は黙って別ポートに移らずエラーになるので、`vite.config.ts` の `server.port` を変更する。
 
 ## 記事を追加する方法
 

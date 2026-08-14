@@ -55,4 +55,4 @@ AIについて調べた記事をカテゴリ別に載せていくサイト「AI�
 - TypeScript 6 で `baseUrl` が非推奨 → tsconfig は `paths` のみで設定している(`baseUrl` を足すとビルドが落ちる)
 - 記事の `id` は日付+連番で重複禁止。`category` は `CATEGORIES` の id と一致させる
 - 本文 `content` はバッククォート囲みのHTML。本文中にバッククォートを書くとエラー
-- 開発サーバーは `.claude/launch.json`(npm run dev, port 5173)で起動できる
+- 開発サーバーのポートは **5310番に固定**(`vite.config.ts` の `server.port`、`strictPort: true`)。5173は別プロジェクトが使用中で衝突したため変更した。`npm run preview` は5311番
