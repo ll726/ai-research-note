@@ -1,0 +1,126 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(0.223 0.0183 279.84);
+  --foreground: oklch(1 0 0);
+
+  --card: oklch(0.2498 0.0243 281.29);
+  --card-foreground: oklch(0.9838 0.0035 247.86);
+
+  --popover: oklch(0.2498 0.0243 281.29);
+  --popover-foreground: oklch(1 0 0);
+
+  --primary: oklch(0.6317 0.1989 275.24);
+  --primary-foreground: oklch(1 0 0);
+
+  --secondary: oklch(0.2883 0.0304 276.56);
+  --secondary-foreground: oklch(0.6275 0.0255 283.24);
+
+  --muted: oklch(0.2498 0.0243 281.29);
+  --muted-foreground: oklch(0.701 0.0199 275.78);
+
+  --accent: oklch(0.321 0.0242 281.73);
+  --accent-foreground: oklch(0.9838 0.0035 247.86);
+
+  --destructive: oklch(0.3959 0.1331 25.72);
+  --destructive-foreground: oklch(0.9838 0.0035 247.86);
+
+  --border: oklch(0.353 0.0327 282.22);
+  --input: oklch(0.28 0.0369 259.97);
+  --ring: oklch(0.6317 0.1989 275.24);
+  --radius: 0.5rem;
+
+  /* ─── Chart palette: tonal ramp of the DS primary (one hue, five shades) ─── */
+  --chart-1: var(--primary);
+  --chart-2: oklch(from var(--primary) calc(l - 0.09) calc(c * 0.92) h);
+  --chart-3: oklch(from var(--primary) calc(l - 0.18) calc(c * 0.84) h);
+  --chart-4: oklch(from var(--primary) calc(l - 0.27) calc(c * 0.76) h);
+  --chart-5: oklch(from var(--primary) calc(l - 0.36) calc(c * 0.68) h);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  ::selection {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+  /* stylelint-disable-next-line selector-no-vendor-prefix */
+  ::-moz-selection {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  /* Let textareas grow with their content instead of nested scrolling:
+     smoother writing, easier-to-scan forms. */
+  textarea {
+    /* Fallback for browsers without field-sizing (e.g. Firefox): keep the
+       textarea user-resizable so it can still be grown manually. */
+    resize: vertical;
+  }
+  @supports (field-sizing: content) {
+    textarea {
+      field-sizing: content;
+      max-height: 20lh;
+      overflow-y: auto;
+    }
+  }
+
+  /* Reserve the scrollbar gutter so the page keeps its width whenever the
+     scrollbar comes and goes: content loading in, moving between a short
+     and a tall page, or a scroll lock that just hides overflow. */
+  html {
+    scrollbar-gutter: stable;
+  }
+  @supports (scrollbar-gutter: stable) {
+    html body[data-scroll-locked] {
+      /* Radix's scroll lock re-adds the scrollbar width as body margin. The
+         stable gutter already reserves it, so without this the two stack and
+         opening a dialog shifts the page the other way. */
+      margin-right: 0 !important;
+    }
+  }
+}

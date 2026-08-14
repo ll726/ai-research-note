@@ -1,6 +1,6 @@
 # HANDOVER.md
 
-- 最終更新: 2026-08-14
+- 最終更新: 2026-08-14(Linearデザイン適用後)
 
 ## プロジェクト概要
 
@@ -17,6 +17,19 @@ AIについて調べた記事をカテゴリ別に載せていくサイト「AI�
 - ハッシュルーター自作(`#/`、`#/cat/カテゴリid`、`#/article/記事id`)
 - shadcn公式MCPサーバー設定(`.mcp.json`、npx shadcn@latest mcp)
 - `npm run build` 成功、ブラウザで表示確認済み(コンソールエラーなし)
+
+## 今回やったこと(追記: Linearデザイン適用)
+
+- Better Design の公開レジストリから Linear テーマを適用(APIキー不要)
+  - `npx shadcn@latest add https://www.better-design.com/registry/linear/globals.json` でテーマトークン導入(ダーク紫基調)
+  - button / card / badge / input / separator を Linear 版で上書き
+- UIをLinear風に全面再設計(ロジック変更なし): sticky ヘッダー、カテゴリはフィルタピル、記事一覧は高密度リスト行
+- Better Design のレビュールール(https://better-design.com/ai-guardrails/download/claude-code)で再評価し修正:
+  - コントラスト実測(oklch→sRGB換算スクリプト)で全テキスト WCAG AA 4.5:1 以上を確認(ピル内件数の opacity-70 が 3.68:1 だったため撤廃 → 6.02:1)
+  - タッチ端末でピル・検索欄を44px化(`pointer-coarse:h-11`)
+  - `prefers-reduced-motion` 対応を index.css に追加
+  - 320px幅で横スクロールなしを確認、記事ページは行長制限のため max-w-3xl に
+  - カテゴリ色はドット+テキスト併記(色だけに依存しない)
 
 ## 未完了・途中の作業
 

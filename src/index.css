@@ -46,33 +46,35 @@
     --radius-2xl: calc(var(--radius) * 1.8);
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
+    --chart-1: var(--chart-1);
+    --color-destructive-foreground: var(--destructive-foreground);
 }
 
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --radius: 0.625rem;
+    --background: oklch(0.223 0.0183 279.84);
+    --foreground: oklch(1 0 0);
+    --card: oklch(0.2498 0.0243 281.29);
+    --card-foreground: oklch(0.9838 0.0035 247.86);
+    --popover: oklch(0.2498 0.0243 281.29);
+    --popover-foreground: oklch(1 0 0);
+    --primary: oklch(0.6317 0.1989 275.24);
+    --primary-foreground: oklch(1 0 0);
+    --secondary: oklch(0.2883 0.0304 276.56);
+    --secondary-foreground: oklch(0.6275 0.0255 283.24);
+    --muted: oklch(0.2498 0.0243 281.29);
+    --muted-foreground: oklch(0.701 0.0199 275.78);
+    --accent: oklch(0.321 0.0242 281.73);
+    --accent-foreground: oklch(0.9838 0.0035 247.86);
+    --destructive: oklch(0.3959 0.1331 25.72);
+    --border: oklch(0.353 0.0327 282.22);
+    --input: oklch(0.28 0.0369 259.97);
+    --ring: oklch(0.6317 0.1989 275.24);
+    --chart-1: var(--primary);
+    --chart-2: oklch(from var(--primary) calc(l - 0.09) calc(c * 0.92) h);
+    --chart-3: oklch(from var(--primary) calc(l - 0.18) calc(c * 0.84) h);
+    --chart-4: oklch(from var(--primary) calc(l - 0.27) calc(c * 0.76) h);
+    --chart-5: oklch(from var(--primary) calc(l - 0.36) calc(c * 0.68) h);
+    --radius: 0.5rem;
     --sidebar: oklch(0.985 0 0);
     --sidebar-foreground: oklch(0.145 0 0);
     --sidebar-primary: oklch(0.205 0 0);
@@ -81,32 +83,33 @@
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
+    --destructive-foreground: oklch(0.9838 0.0035 247.86);
 }
 
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
+    --background: oklch(0.223 0.0183 279.84);
+    --foreground: oklch(1 0 0);
+    --card: oklch(0.2498 0.0243 281.29);
+    --card-foreground: oklch(0.9838 0.0035 247.86);
+    --popover: oklch(0.2498 0.0243 281.29);
+    --popover-foreground: oklch(1 0 0);
+    --primary: oklch(0.6317 0.1989 275.24);
+    --primary-foreground: oklch(1 0 0);
+    --secondary: oklch(0.2883 0.0304 276.56);
+    --secondary-foreground: oklch(0.6275 0.0255 283.24);
+    --muted: oklch(0.2498 0.0243 281.29);
+    --muted-foreground: oklch(0.701 0.0199 275.78);
+    --accent: oklch(0.321 0.0242 281.73);
+    --accent-foreground: oklch(0.9838 0.0035 247.86);
+    --destructive: oklch(0.3959 0.1331 25.72);
+    --border: oklch(0.353 0.0327 282.22);
+    --input: oklch(0.28 0.0369 259.97);
+    --ring: oklch(0.6317 0.1989 275.24);
+    --chart-1: var(--primary);
+    --chart-2: oklch(from var(--primary) calc(l - 0.09) calc(c * 0.92) h);
+    --chart-3: oklch(from var(--primary) calc(l - 0.18) calc(c * 0.84) h);
+    --chart-4: oklch(from var(--primary) calc(l - 0.27) calc(c * 0.76) h);
+    --chart-5: oklch(from var(--primary) calc(l - 0.36) calc(c * 0.68) h);
     --sidebar: oklch(0.205 0 0);
     --sidebar-foreground: oklch(0.985 0 0);
     --sidebar-primary: oklch(0.488 0.243 264.376);
@@ -115,6 +118,8 @@
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.556 0 0);
+    --destructive-foreground: oklch(0.9838 0.0035 247.86);
+    --radius: 0.5rem;
 }
 
 @layer base {
@@ -129,6 +134,18 @@
     }
 }
 
+/* ---- アニメーション抑制設定(prefers-reduced-motion)への対応 ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* ---- 記事本文(HTMLで書かれた content 用のスタイル) ---- */
 @layer components {
   .article-body h2 {
@@ -141,7 +158,11 @@
     @apply my-2.5;
   }
   .article-body a {
-    @apply text-blue-600 underline underline-offset-2 dark:text-blue-400;
+    @apply underline underline-offset-2;
+    color: oklch(0.78 0.13 275.24); /* primaryを明るくした紫。ダーク背景でもコントラスト比4.5:1以上 */
+  }
+  .article-body a:hover {
+    color: oklch(0.86 0.1 275.24);
   }
   .article-body ul {
     @apply my-2.5 ml-5 list-disc;
@@ -156,7 +177,7 @@
     @apply rounded border bg-muted px-1.5 py-0.5 font-mono text-[0.85em];
   }
   .article-body pre {
-    @apply my-3 overflow-x-auto rounded-lg bg-zinc-900 p-4 text-zinc-100;
+    @apply my-3 overflow-x-auto rounded-lg border bg-background p-4 text-foreground;
   }
   .article-body pre code {
     @apply border-0 bg-transparent p-0 text-inherit;
