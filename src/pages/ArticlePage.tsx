@@ -41,7 +41,7 @@ export function ArticlePage({ id }: { id: string }) {
   return (
     <main className="mx-auto max-w-3xl px-4 py-8">
       <Button asChild variant="ghost" size="sm" className="-ml-2 mb-4">
-        <a href="#/">← 記事一覧へ戻る</a>
+        <a href="#/articles">← 記事一覧へ戻る</a>
       </Button>
 
       <Card className="p-6 sm:p-8">
