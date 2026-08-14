@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button"
+import { CategoryIcon } from "@/components/CategoryIcon"
 import { ARTICLES, CATEGORIES, categoryMap, sortedArticles } from "@/data/articles"
+import heroImage from "@/assets/hero.png"
 
 export function Landing() {
   const latest = sortedArticles().slice(0, 3)
@@ -9,7 +11,8 @@ export function Landing() {
     <main>
       {/* ヒーロー */}
       <section className="border-b border-border/60">
-        <div className="mx-auto max-w-5xl px-4 pb-16 pt-16 sm:pb-24 sm:pt-24">
+        <div className="mx-auto flex max-w-5xl items-center gap-10 px-4 pb-16 pt-16 sm:pb-24 sm:pt-24">
+          <div className="min-w-0 flex-1">
           <p className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-[#a7b0f5]">
             AI Research Note
           </p>
@@ -50,6 +53,17 @@ export function Landing() {
               <dt className="text-xs text-muted-foreground">最終更新</dt>
             </div>
           </dl>
+          </div>
+          {/* ヒーローイラスト */}
+          <div className="relative hidden shrink-0 lg:block" aria-hidden="true">
+            <div className="absolute inset-0 -z-10 rounded-full bg-primary/20 blur-3xl" />
+            <img
+              src={heroImage}
+              alt=""
+              width={300}
+              className="w-[300px] select-none drop-shadow-[0_20px_60px_color-mix(in_oklch,var(--primary)_45%,transparent)]"
+            />
+          </div>
         </div>
       </section>
 
@@ -81,9 +95,10 @@ export function Landing() {
                   <div className="flex items-center justify-between">
                     <span
                       aria-hidden="true"
-                      className="flex size-9 items-center justify-center rounded-lg border border-border bg-secondary/50"
+                      className="flex size-10 items-center justify-center rounded-lg border border-border"
+                      style={{ background: `color-mix(in srgb, ${cat.color} 14%, transparent)` }}
                     >
-                      <span className="size-2.5 rounded-full" style={{ backgroundColor: cat.color }} />
+                      <CategoryIcon id={cat.id} className="size-[18px]" style={{ color: cat.color }} />
                     </span>
                     <span className="font-mono text-xs text-muted-foreground">{count} 記事</span>
                   </div>
@@ -121,8 +136,27 @@ export function Landing() {
                 <a
                   key={a.id}
                   href={`#/article/${a.id}`}
-                  className="group flex flex-col rounded-xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[0_8px_30px_color-mix(in_oklch,var(--primary)_12%,transparent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[0_8px_30px_color-mix(in_oklch,var(--primary)_12%,transparent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
+                  {/* カテゴリ色のビジュアルバナー */}
+                  <div
+                    aria-hidden="true"
+                    className="relative h-24 overflow-hidden border-b border-border/60"
+                    style={{
+                      background: cat
+                        ? `linear-gradient(135deg, color-mix(in srgb, ${cat.color} 26%, var(--card)), var(--card) 70%)`
+                        : "var(--secondary)",
+                    }}
+                  >
+                    {cat && (
+                      <CategoryIcon
+                        id={cat.id}
+                        className="absolute -bottom-5 -right-4 size-24 opacity-25 transition-transform duration-300 group-hover:scale-105"
+                        style={{ color: cat.color }}
+                      />
+                    )}
+                  </div>
+                  <div className="flex flex-1 flex-col p-5">
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
                     {cat && (
                       <span className="inline-flex items-center gap-1.5">
@@ -146,6 +180,7 @@ export function Landing() {
                     読む
                     <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
                   </span>
+                  </div>
                 </a>
               )
             })}

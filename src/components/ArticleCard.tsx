@@ -1,3 +1,4 @@
+import { CategoryIcon } from "@/components/CategoryIcon"
 import { categoryMap, type Article } from "@/data/articles"
 
 // Linear風の高密度リスト行。<Card> で囲んだリストの中で使う想定
@@ -6,11 +7,18 @@ export function ArticleRow({ article, showCategory = true }: { article: Article;
   return (
     <a
       href={`#/article/${article.id}`}
-      className="group flex items-baseline gap-3 px-4 py-3 transition-colors hover:bg-accent focus-visible:outline-none focus-visible:bg-accent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:px-5"
+      className="group flex items-center gap-4 px-4 py-3 transition-colors hover:bg-accent focus-visible:outline-none focus-visible:bg-accent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:px-5"
     >
-      <time className="hidden w-24 shrink-0 font-mono text-xs text-muted-foreground sm:block">
-        {article.date}
-      </time>
+      {/* カテゴリ色のアイコンタイル */}
+      {cat && (
+        <span
+          aria-hidden="true"
+          className="hidden size-9 shrink-0 items-center justify-center rounded-lg border border-border sm:flex"
+          style={{ background: `color-mix(in srgb, ${cat.color} 14%, transparent)` }}
+        >
+          <CategoryIcon id={cat.id} className="size-4" style={{ color: cat.color }} />
+        </span>
+      )}
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
           {showCategory && cat && (
@@ -34,9 +42,12 @@ export function ArticleRow({ article, showCategory = true }: { article: Article;
           {article.date}
         </time>
       </div>
+      <time className="hidden w-24 shrink-0 text-right font-mono text-xs text-muted-foreground sm:block">
+        {article.date}
+      </time>
       <span
         aria-hidden="true"
-        className="hidden self-center text-muted-foreground/50 transition-transform group-hover:translate-x-0.5 group-hover:text-muted-foreground sm:block"
+        className="hidden text-muted-foreground/50 transition-transform group-hover:translate-x-0.5 group-hover:text-muted-foreground sm:block"
       >
         →
       </span>

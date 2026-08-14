@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { ArticleRow } from "@/components/ArticleCard"
+import { CategoryIcon } from "@/components/CategoryIcon"
 import { ARTICLES, categoryMap } from "@/data/articles"
 
 export function ArticlePage({ id }: { id: string }) {
@@ -44,7 +45,25 @@ export function ArticlePage({ id }: { id: string }) {
         <a href="#/articles">← 記事一覧へ戻る</a>
       </Button>
 
-      <Card className="p-6 sm:p-8">
+      <Card className="overflow-hidden p-6 pt-0 sm:p-8 sm:pt-0">
+        {/* カテゴリ色のカバーバナー */}
+        <div
+          aria-hidden="true"
+          className="relative -mx-6 mb-6 h-28 overflow-hidden border-b border-border/60 sm:-mx-8 sm:mb-8"
+          style={{
+            background: cat
+              ? `linear-gradient(135deg, color-mix(in srgb, ${cat.color} 24%, var(--card)), var(--card) 75%)`
+              : "var(--secondary)",
+          }}
+        >
+          {cat && (
+            <CategoryIcon
+              id={cat.id}
+              className="absolute -bottom-6 right-6 size-28 opacity-20"
+              style={{ color: cat.color }}
+            />
+          )}
+        </div>
         <div className="flex flex-wrap items-center gap-2.5 text-xs text-muted-foreground">
           {cat && (
             <a
