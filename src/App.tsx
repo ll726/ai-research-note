@@ -38,7 +38,12 @@ export default function App() {
     <div className="min-h-screen bg-background">
       <Header />
       {page}
-      <footer className="py-8 text-center text-xs text-muted-foreground">AI調査ノート</footer>
+      <footer className="mt-4 border-t border-border/60">
+        <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-2 px-4 py-6 text-xs text-muted-foreground">
+          <span className="font-medium text-foreground/80">AI調査ノート</span>
+          <span>調べたことを、カテゴリ別に毎日すこしずつ。</span>
+        </div>
+      </footer>
     </div>
   )
 }

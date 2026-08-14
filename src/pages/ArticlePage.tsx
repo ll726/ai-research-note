@@ -31,6 +31,9 @@ export function ArticlePage({ id }: { id: string }) {
   }
 
   const cat = categoryMap[article.category]
+  // 本文テキスト量から読了時間の目安(日本語 約500字/分)
+  const plainLength = article.content.replace(/<[^>]*>/g, "").replace(/\s/g, "").length
+  const readMinutes = Math.max(1, Math.round(plainLength / 500))
   const related = ARTICLES.filter((a) => a.category === article.category && a.id !== article.id)
     .sort((a, b) => (a.date < b.date ? 1 : -1))
     .slice(0, 5)
@@ -57,6 +60,8 @@ export function ArticlePage({ id }: { id: string }) {
             </a>
           )}
           <time className="font-mono">{article.date}</time>
+          <span aria-hidden="true" className="text-border">|</span>
+          <span>約{readMinutes}分で読めます</span>
         </div>
         <h1 className="mt-4 text-xl font-semibold leading-snug tracking-tight sm:text-2xl">
           {article.title}

@@ -128,10 +128,34 @@
     }
   body {
     @apply bg-background text-foreground;
+    /* 画面上部にプライマリカラーのほのかなグロー */
+    background-image:
+      radial-gradient(900px 420px at 50% -120px, color-mix(in oklch, var(--primary) 14%, transparent), transparent 70%);
+    background-repeat: no-repeat;
     }
   html {
     @apply font-sans;
     }
+  ::selection {
+    background: color-mix(in oklch, var(--primary) 40%, transparent);
+    color: var(--foreground);
+  }
+  /* ダークテーマに合わせた細身のスクロールバー */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in oklch, var(--border) 80%, transparent);
+    border-radius: 8px;
+    border: 2px solid var(--background);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--border);
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
 }
 
 /* ---- アニメーション抑制設定(prefers-reduced-motion)への対応 ---- */
