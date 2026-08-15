@@ -52,6 +52,53 @@ export const CATEGORIES: Category[] = [
 // },
 export const ARTICLES: Article[] = [
   {
+    id: "20260815-04",
+    title: "Project・Skill・MCP・APIの違い ― 作業部屋・手順書・道具・接続口",
+    category: "howto",
+    date: "2026-08-15",
+    summary:
+      "混同しやすい4つの仕組みを「たとえ」で整理。Projectは情報を置く場所、Skillはやり方を教えるもの、MCPは実際に外部を操作するもの。SkillとMCPは競合せず、組み合わせると強い。",
+    content: `
+      <p>ClaudeなどのAIを業務で使い始めると、<strong>Project・Skill・MCP・API</strong>という似たような言葉が次々に出てきます。それぞれの役割を「たとえ」で整理します。</p>
+
+      <h2>4つの仕組みの違い</h2>
+      <table>
+        <tr><th>仕組み</th><th>何をするもの?</th><th>たとえると</th></tr>
+        <tr><td><strong>Project</strong></td><td>資料・会話・前提をまとめる</td><td>作業部屋</td></tr>
+        <tr><td><strong>Skill</strong></td><td>AIに「どうやって仕事するか」を教える</td><td>手順書・マニュアル</td></tr>
+        <tr><td><strong>MCP</strong></td><td>AIに外部の機能やデータを使わせる</td><td>手足・道具</td></tr>
+        <tr><td><strong>API</strong></td><td>ソフト同士が直接やり取りする</td><td>接続口・通信手段</td></tr>
+      </table>
+      <p>一番重要なのは次の3行です。</p>
+      <ul>
+        <li><strong>Project=情報を置く場所</strong></li>
+        <li><strong>Skill=やり方を教える</strong></li>
+        <li><strong>MCP=実際に外部を操作する</strong></li>
+      </ul>
+
+      <h2>事故報告書の作成で例えると</h2>
+      <ul>
+        <li><strong>Project</strong>:事故報告に関する資料や過去の会話をまとめておく</li>
+        <li><strong>Skill</strong>:「事故内容を整理 → 原因分析 → 再発防止 → この書式で出力」という手順をClaudeに覚えさせる</li>
+        <li><strong>MCP</strong>:入居者DBを検索する/過去事故を取得する/事故記録を保存する/Excelを作る</li>
+        <li><strong>API</strong>:自作ソフトからOpenAIやClaudeなどのAIを直接呼び出す</li>
+      </ul>
+
+      <h2>組み合わせると1本の流れになる</h2>
+      <pre><code>Project「必要な情報」
+    ↓
+Skill「どう考えて処理するか」
+    ↓
+Claude「判断する」
+    ↓
+MCP「実際に操作する」
+    ↓
+自作ソフト・DB・Webサイト</code></pre>
+      <p>つまり<strong>SkillとMCPは競合するものではなく、一緒に使うと強い</strong>組み合わせです。「考え方・手順」はSkillに、「実際の操作・データ取得」はMCPに任せる、と覚えておくと設計に迷いません。</p>
+      <p>関連記事:<a href="#/article/20260815-02">WebMCP × Cloudflare</a>(MCPをインターネット上に公開する話)、<a href="#/article/20260815-01">Claude Codeとは何か</a>(Skill・MCPを使う開発ツール)</p>
+    `,
+  },
+  {
     id: "20260815-03",
     title: "【検証編】Cloudflare WebMCPを公式情報で確かめた ― 何が本当で何が未確定か",
     category: "coding",
