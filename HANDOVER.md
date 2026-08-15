@@ -1,6 +1,6 @@
 # HANDOVER.md
 
-- 最終更新: 2026-08-15(GitHub Pages公開。記事は計5件)
+- 最終更新: 2026-08-15(記事は計8件: +WebMCP×Cloudflare、+同検証編、+Project/Skill/MCP/APIの違い。動画由来の記事は著作権配慮で独自構成に書き直す方針)
 
 ## 今回やったこと(追記: 公開)
 
