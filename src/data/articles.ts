@@ -52,6 +52,65 @@ export const CATEGORIES: Category[] = [
 // },
 export const ARTICLES: Article[] = [
   {
+    id: "20260815-03",
+    title: "【検証編】Cloudflare WebMCPを公式情報で確かめた ― 何が本当で何が未確定か",
+    category: "coding",
+    date: "2026-08-15",
+    summary:
+      "前回の調査メモ(動画ベース)をCloudflare公式ブログとW3C仕様で裏取り。ワンスイッチ有効化は本当。ただし「開発者プレビュー」であり、対応ブラウザや料金など未確定な点も多い。",
+    content: `
+      <p>前回の記事「WebMCP × Cloudflare」は解説動画をもとにした調査メモでした。今回はその内容を<strong>Cloudflare公式ブログとW3C仕様書で裏取り</strong>し、何が事実で何が未確定かを整理します(2026年8月15日調査)。</p>
+
+      <h2>結論サマリー</h2>
+      <table>
+        <tr><th>動画の主張</th><th>検証結果</th></tr>
+        <tr><td>スイッチONだけでMCP対応</td><td><strong>ほぼ事実</strong>。ダッシュボードのトグルで有効化、デプロイ不要(公式ブログに明記)</td></tr>
+        <tr><td>コード変更なし</td><td><strong>条件付きで事実</strong>。Cloudflareがエッジでスクリプトを自動注入する。ただし自作機能を公開するには追加の仕組みが必要</td></tr>
+        <tr><td>Google・Microsoftが標準化を推進</td><td><strong>事実</strong>。ただし現時点ではW3Cの「正式標準」ではなくドラフト段階</td></tr>
+        <tr><td>約8割高速化・精度1〜2割向上</td><td><strong>公式記載を確認できず</strong>。Cloudflare公式ブログにこの数値はない</td></tr>
+        <tr><td>Claude Desktopのコネクターに登録して使う</td><td><strong>公式記事には記載なし</strong>。公式が説明するのはブラウザ経由の利用。別方式(Workersのリモート MCP)なら従来から可能</td></tr>
+        <tr><td>料金</td><td><strong>記載なし</strong>。開発者プレビューであり料金体系は不明</td></tr>
+      </table>
+
+      <h2>WebMCPという「標準」の現在地</h2>
+      <ul>
+        <li>WebMCPは、Webサイトが構造化されたツールをAIエージェントに公開するためのブラウザAPI(<code>navigator.modelContext</code>)の提案仕様</li>
+        <li>仕様の編集者はGoogle(Chrome)とMicrosoft(Edge)のメンバー。W3CのWeb Machine Learningコミュニティグループの<strong>ドラフトレポート</strong>であり、W3C正式標準でも標準化トラックでもない(2026年前半時点)</li>
+        <li>実装は<strong>Chrome 146 Canaryの早期プレビュー</strong>(2026年2月)が最初。Firefox・Safari・Edgeは議論に参加しているが未実装</li>
+      </ul>
+      <p>つまり「今後の本命」ではあるものの、<strong>現時点で一般ユーザーのブラウザで広く動く技術ではまだない</strong>、というのが正確なところです。</p>
+
+      <h2>Cloudflare側の実装(公式ブログより)</h2>
+      <p>Cloudflareは2026年8月6日にWebMCPサポートを<strong>開発者プレビュー</strong>として公開しました。仕組みは2段構えです。</p>
+      <ol>
+        <li><strong>エッジでの注入</strong>:HTMLRewriterで各HTMLレスポンスに1行、ブリッジスクリプトへの参照を自動追加(same originから配信)</li>
+        <li><strong>ブリッジ</strong>:ページ内でWebMCP対応を検出し、対応ブラウザなら <code>registerTool</code> でツールを登録。非対応ブラウザでは何もしない(=サイトの動作は変わらない)</li>
+      </ol>
+      <p>有効化は「Agent Readiness」設定からトグルON、追加するTool Packを選ぶだけ。確認は次のコマンドでできます。</p>
+      <pre><code>curl -s https://あなたのサイト | grep webmcp</code></pre>
+      <p>プレビュー版のTool Packは2種類:</p>
+      <ul>
+        <li><strong>Content Credentials Pack</strong>:画像のC2PA(来歴)情報をスキャン・検査するツール</li>
+        <li><strong>Site MCP Server Pack</strong>:サイト独自のMCPサーバーと通信する動的パック</li>
+      </ul>
+      <p>重要な点として、プレビューでは<strong>ツールはすべて訪問者のブラウザ内で実行</strong>されます(Cloudflareサーバーとの往復なし)。AIエージェント側からは、エージェント用ブラウザ(公式例ではBrowserRun)でサイトを開いてツールを呼び出す形になります。</p>
+
+      <h2>「Skill配信」の応用はWebMCPとは別の話</h2>
+      <p>前回紹介した「SkillをCloudflareに置いて全PCへ配信する」使い方は、正確には<strong>Cloudflare Workers上のリモートMCPサーバー</strong>(こちらは2025年から確立済みの仕組み)で実現するものです。リモートMCPサーバーならURLをClaude Desktopのカスタムコネクターに登録して使えるので、動画のデモ後半はこちらの仕組みと理解するのが正確です。「WebMCP=サイトの画面内ツール化(ブラウザ経由)」「リモートMCP=機能のAPI公開(直接接続)」と区別しておくと混乱しません。</p>
+
+      <h2>Agent Readinessスコアについて</h2>
+      <p>Cloudflareはサイトの「AIエージェント対応度」を発見可能性・コンテンツアクセス性・ボットアクセス制御・機能の4軸で採点する<strong>Agent Readinessスコア</strong>も公開しており、isitagentready.com で自サイトをスキャンできます。WebMCPはこの「機能」カテゴリのチェック項目の1つです。</p>
+
+      <h2>まとめ:今どう向き合うか</h2>
+      <ul>
+        <li>方向性は本物(Google・Microsoft・Cloudflareが揃って推進)だが、<strong>標準・実装・料金すべてが流動的なプレビュー段階</strong></li>
+        <li>「サイトをAI対応にする」実験は、Cloudflare配下のサイトならトグル1つで低リスクに試せる</li>
+        <li>いま実務で確実に使えるのは、Workersの<strong>リモートMCPサーバー</strong>によるツール/Skill公開の方</li>
+      </ul>
+      <p>出典:Cloudflare公式ブログ「WebMCP: making the web agent-ready」「Introducing the Agent Readiness score」、W3C Web Machine Learning CGのWebMCPドラフト仕様、ブラウザ対応状況の各種調査記事(2026年8月時点)。</p>
+    `,
+  },
+  {
     id: "20260815-02",
     title: "WebMCP × Cloudflare ― WebサイトをAIが直接操作できるようにする",
     category: "coding",
@@ -91,7 +150,7 @@ export const ARTICLES: Article[] = [
       <p>組織なら、見積書・報告書・記録・教育資料といった定型業務のSkillを1か所で管理して全員に配信する使い方が考えられます。個人でも、複数PCのClaude CodeやClaude Desktopから同じSkill群を使う「自分専用のAI機能サーバー」として応用できそうです(複数PCでSkillを共通化したい、という当サイトの課題とも相性が良い)。</p>
 
       <h2>注意点:未検証の情報を含む</h2>
-      <p>本記事は動画視聴に基づく整理であり、一次情報での裏取りをまだしていません。特に、性能向上の程度、設定だけでコード変更なしに対応できる範囲、標準化の動向、Cloudflare WebMCPベータ版の正式仕様・制限・料金などは、Cloudflare公式ドキュメントでの確認が必要です。検証でき次第、この記事を更新するか続編を書く予定です。</p>
+      <p>本記事は動画視聴に基づく整理であり、一次情報での裏取りをまだしていません。特に、性能向上の程度、設定だけでコード変更なしに対応できる範囲、標準化の動向、Cloudflare WebMCPベータ版の正式仕様・制限・料金などは、Cloudflare公式ドキュメントでの確認が必要です。→ 公式情報での裏取り結果を<a href="#/article/20260815-03">検証編</a>にまとめました。</p>
     `,
   },
   {
