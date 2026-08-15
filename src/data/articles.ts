@@ -52,6 +52,79 @@ export const CATEGORIES: Category[] = [
 // },
 export const ARTICLES: Article[] = [
   {
+    id: "20260815-01",
+    title: "Claude Codeとは何か ― AIエージェント型コーディングツール入門",
+    category: "claude",
+    date: "2026-08-15",
+    summary:
+      "Anthropic製のエージェント型コーディングツールClaude Codeを調査。使える形態、主な機能、料金プラン、類似ツールとの違い、初心者の始め方まで。",
+    content: `
+      <p><strong>Claude Codeは、Anthropicが開発したAIエージェント型コーディングツールです。</strong>チャットでコードの断片をもらうのではなく、AIが自分でコードベースを読み、ファイルを編集し、コマンドを実行し、テストを回して結果から学ぶ――という一連の作業を任せられるのが特徴です。2025年2月に研究プレビュー、同年5月に一般提供が始まり、いまではプログラマー以外の利用者も増えています。</p>
+
+      <h2>どこで使えるか</h2>
+      <ul>
+        <li><strong>CLI(ターミナル)</strong>:公式の中心的な形態。macOS / Linux / WSL / Windows対応</li>
+        <li><strong>デスクトップアプリ</strong>:複数セッションの同時表示やスケジュール機能つき(Mac / Windows)</li>
+        <li><strong>IDE拡張</strong>:VS Code、JetBrains(IntelliJ・PyCharmなど)</li>
+        <li><strong>Web版・モバイル</strong>:ブラウザやClaudeアプリ(iOS/Android)からクラウド実行</li>
+        <li><strong>Chrome拡張</strong>:ブラウザ操作と組み合わせて利用</li>
+      </ul>
+
+      <h2>インストール</h2>
+      <p>Windowsなら PowerShell で次の1行です。</p>
+      <pre><code>irm https://claude.ai/install.ps1 | iex</code></pre>
+      <p>macOS / Linux / WSL の場合:</p>
+      <pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+      <p>あとはプロジェクトのフォルダで <code>claude</code> と打てば起動し、初回はブラウザでログインします。</p>
+
+      <h2>主な機能</h2>
+      <table>
+        <tr><th>機能</th><th>説明</th></tr>
+        <tr><td>エージェントループ</td><td>指示→ツール選択→実行→結果から学習→繰り返し。複数ファイル変更・テスト・デバッグを自律的に進める</td></tr>
+        <tr><td>CLAUDE.md</td><td>プロジェクトの規約・構成・注意点を書いておくと、セッションをまたいで記憶される「プロジェクトメモ」</td></tr>
+        <tr><td>Skills(スキル)</td><td>再利用できる手順書。チームで共有でき、スラッシュコマンドとして呼び出せる</td></tr>
+        <tr><td>Hooks(フック)</td><td>ファイル編集後に自動フォーマット、完了時に通知など、決まったタイミングで自動実行</td></tr>
+        <tr><td>MCP対応</td><td>Slack・Jira・Google Driveや自作ツールなど外部サービスを接続する共通規格</td></tr>
+        <tr><td>サブエージェント</td><td>複数のAIを並行実行してタスクを分担。「作る役」と「検証する役」を分けられる</td></tr>
+        <tr><td>プランモード</td><td>実行前に計画をレビューして承認する安全運転モード</td></tr>
+        <tr><td>ループ系機能</td><td><code>/goal</code>(目標達成まで自律実行)、<code>/loop</code>(定期実行)、Routines(クラウド定期実行)。ループエンジニアリングの土台</td></tr>
+        <tr><td>Git連携</td><td>コミットメッセージ生成、ブランチ作成、Pull Request作成まで自動化</td></tr>
+      </table>
+      <p>ループ系機能の考え方は、当サイトの「ループエンジニアリング完全ガイド」も参照してください。</p>
+
+      <h2>料金(2026年8月時点)</h2>
+      <ul>
+        <li><strong>Pro($20/月)</strong>:Claude Codeが使える最小プラン。Claudeチャットと利用枠を共有</li>
+        <li><strong>Max($100/月・$200/月)</strong>:Proの5倍/20倍の利用枠。長時間の開発向け</li>
+        <li><strong>API従量課金</strong>:サブスクリプションなしでAPIキーでも利用可能</li>
+        <li>無料プランでは利用不可。上限到達後に追加課金できるオプションもあり</li>
+      </ul>
+
+      <h2>対応モデル</h2>
+      <p>Claude 5ファミリー(最上位の<strong>Fable 5</strong>、<strong>Opus</strong>、バランス型の<strong>Sonnet 5</strong>)と高速・低価格の<strong>Haiku 4.5</strong>を切り替えて使えます。目安は「複雑な設計・デバッグ=Fable/Opus、日常の開発=Sonnet、軽い処理=Haiku」。検証だけ上位モデルに任せる、といった使い分けもできます。</p>
+
+      <h2>類似ツールとの違い</h2>
+      <ul>
+        <li><strong>GitHub Copilot($10/月)</strong>:エディタ内の補完が中心で、対応IDEの広さと安さが強み</li>
+        <li><strong>Cursor($20/月)</strong>:AI統合の専用IDE。IDE内での操作性が洗練されている</li>
+        <li><strong>Claude Code</strong>:自律的なマルチファイル編集と自動化(ループ・スケジュール実行)が最大の強み。コーディングベンチマークSWE-benchで業界最高クラスのスコアが報告されている(二次情報)</li>
+      </ul>
+      <p>実務では「重い作業や自動化はClaude Code、書きながらの補完はCopilot/Cursor」という併用が主流になりつつあります。</p>
+
+      <h2>初心者が最初にやること</h2>
+      <ol>
+        <li>インストールして、プロジェクトフォルダで <code>claude</code> を起動</li>
+        <li>「このファイルの機能を説明して」など<strong>読むだけのタスク</strong>から試す</li>
+        <li>プロジェクト直下に <code>CLAUDE.md</code> を作り、規約や構成を書いておく</li>
+        <li>権限モード(都度確認/プランモード/自動承認)の違いを理解する</li>
+        <li>慣れたらHooksで自動フォーマット、<code>/goal</code>で自律実行を試す</li>
+      </ol>
+
+      <h2>注意点</h2>
+      <p>料金・モデル・機能はいずれも変化が速い分野です(この記事は2026年8月時点の調査)。ベンチマークスコアや他ツール比較は二次情報を含むため、導入前に<a href="https://code.claude.com/docs/en/">公式ドキュメント</a>で最新情報を確認してください。</p>
+    `,
+  },
+  {
     id: "20260814-04",
     title: "ループエンジニアリング完全ガイド【統合版】",
     category: "coding",
