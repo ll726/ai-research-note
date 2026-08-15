@@ -3,7 +3,15 @@
 いろいろなAIについて調べたことをカテゴリ別にまとめていくサイト。
 **Vite + React + TypeScript + Tailwind CSS + shadcn/ui** 構成。
 
-## サイトを表示する方法
+## 公開URL(どこからでも開ける)
+
+**https://ll726.github.io/ai-research-note/**
+
+スマホ・他のPCからもこのURLで閲覧できる。`git push` すると GitHub Actions が自動でビルドして数分で公開に反映される。
+
+## サイトを表示する方法(ローカル)
+
+`サイトを開く.bat` をダブルクリック(サーバー起動+ブラウザが自動で開く)。または:
 
 ```bash
 npm run dev

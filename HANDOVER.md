@@ -1,6 +1,14 @@
 # HANDOVER.md
 
-- 最終更新: 2026-08-15(Claude Code記事追加。記事は計5件、Claude/Anthropicカテゴリに初記事)
+- 最終更新: 2026-08-15(GitHub Pages公開。記事は計5件)
+
+## 今回やったこと(追記: 公開)
+
+- GitHub Pagesで公開: **https://ll726.github.io/ai-research-note/**(リポジトリ: https://github.com/ll726/ai-research-note、公開リポジトリ)
+- `master` へ push すると GitHub Actions(`.github/workflows/deploy.yml`)が自動ビルド&デプロイ(数分で反映)
+- `vite.config.ts` の base は GitHub Actions 上でのみ `/ai-research-note/` になる(ローカルは `/` のまま)
+- ローカル起動用に `サイトを開く.bat` を作成(ダブルクリックでサーバー起動+ブラウザが開く)
+- **記事を追加したら `git push` を忘れずに**(pushしないと公開サイトに反映されない)
 
 ## 今回やったこと(追記: ブログ型→HP型への再構成)
 
