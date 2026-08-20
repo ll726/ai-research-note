@@ -16,8 +16,8 @@
 | 項目 | 内容 |
 |---|---|
 | 種別 | 静的サイト(SPA) |
-| 技術 | Vite + React 19 + TypeScript + Tailwind CSS v4 + shadcn/ui |
-| デザイン | Better Design の Linear テーマ(ダーク基調・紫アクセント) |
+| 技術 | Vite + React 19 + TypeScript + Tailwind CSS v4 |
+| デザイン | Apple / Linear / Notion 系のライトテーマ(暖色の紙色・近黒インク・藍アクセント1色) |
 | ホスティング | GitHub Pages(GitHub Actions で自動デプロイ) |
 | 記事数 | 13件 / カテゴリ 9種(2026-08-16 時点) |
 | データ管理 | `src/data/articles.ts` に全記事を直書き(DB不要) |
@@ -123,7 +123,7 @@ npm run dev
 { id: "robot", name: "ロボティクスAI", color: "#8b5cf6", description: "説明文" },
 ```
 
-アイコンを付ける場合は `src/components/CategoryIcon.tsx` の対応表にも追記します(未登録ならタグアイコンが使われます)。
+`color` は彩度・明度を揃えた落ち着いた色を選びます(既存9色は `docs/GUIDE.md` の配色表を参照)。色は7pxのドットとして表示されます。
 
 ### 3-4. 公開する
 
@@ -170,8 +170,7 @@ AI調査/
    ├─ components/
    │   ├─ Header.tsx           … 固定ヘッダー + ナビ
    │   ├─ ArticleCard.tsx      … 一覧の記事行(ArticleRow)
-   │   ├─ CategoryIcon.tsx     … カテゴリid → lucideアイコン対応表
-   │   └─ ui/                  … shadcn/ui(Linearテーマ版)
+   │   └─ Header.tsx           … ヘッダーとサイトマーク(SiteMark)
    └─ lib/utils.ts             … cn() ユーティリティ
 ```
 
@@ -203,7 +202,9 @@ src/data/articles.ts
 
 ### 4-4. デザインの仕組み
 
-- `src/index.css` に OKLCH のテーマ変数を定義(Linear風のダークテーマ)
+- `src/index.css` にテーマ変数を定義(紙色 `#fbfaf8` / インク `#16161a` / 罫線 `#e4e1db` / アクセント `#2a4e8f`)
+- 書体は3種:見出し=Zen Old Mincho(明朝)、本文=Zen Kaku Gothic New、日付・件数=IBM Plex Mono(`index.html` で読み込み)
+- カードを使わず、1pxの罫線と余白で構造を作る。角丸は最大6px、影は使わない
 - 記事本文(HTML文字列)は `.article-body` クラス配下のスタイルで整形
 - カテゴリ色は各カテゴリの `color` を `style` 属性で直接適用し、`color-mix()` で背景の淡色を生成
 - 画面上部に紫のグラデーショングロー、スクロールバー・選択色もテーマに合わせて調整
@@ -257,7 +258,7 @@ GitHub Actions 上でのビルド時のみ `base` が `/ai-research-note/` に�
 | 自動デプロイ | push だけで公開サイトへ反映 |
 | ポート固定 | 5310番固定 + strictPort で衝突を検知 |
 | ワンクリック起動 | `サイトを開く.bat` |
-| shadcn MCP | `.mcp.json` 設定済み。会話でコンポーネントを追加可能 |
+| shadcn MCP | `.mcp.json` 設定済み。必要ならコンポーネントを追加できる |
 
 ---
 

@@ -1,30 +1,19 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --font-heading: var(--font-sans);
-    --font-sans: 'Geist Variable', "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Meiryo", sans-serif;
-    --color-sidebar-ring: var(--sidebar-ring);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar: var(--sidebar);
-    --color-chart-5: var(--chart-5);
-    --color-chart-4: var(--chart-4);
-    --color-chart-3: var(--chart-3);
-    --color-chart-2: var(--chart-2);
-    --color-chart-1: var(--chart-1);
+    --font-sans: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    --font-serif: "Zen Old Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    --font-heading: var(--font-serif);
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
     --color-ring: var(--ring);
     --color-input: var(--input);
     --color-border: var(--border);
     --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
     --color-accent-foreground: var(--accent-foreground);
     --color-accent: var(--accent);
     --color-muted-foreground: var(--muted-foreground);
@@ -39,119 +28,85 @@
     --color-card: var(--card);
     --color-foreground: var(--foreground);
     --color-background: var(--background);
-    --radius-sm: calc(var(--radius) * 0.6);
-    --radius-md: calc(var(--radius) * 0.8);
+    /* 罫線・補助色(デザイン基礎の定義そのまま) */
+    --color-rule: var(--rule);
+    --color-rule-strong: var(--rule-strong);
+    --color-ink-2: var(--ink-2);
+    --color-ink-3: var(--ink-3);
+    --color-ink-4: var(--ink-4);
+    /* 角丸は最大6px。大きな角丸は使わない */
+    --radius-sm: calc(var(--radius) - 2px);
+    --radius-md: calc(var(--radius) - 1px);
     --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) * 1.4);
-    --radius-2xl: calc(var(--radius) * 1.8);
-    --radius-3xl: calc(var(--radius) * 2.2);
-    --radius-4xl: calc(var(--radius) * 2.6);
-    --chart-1: var(--chart-1);
-    --color-destructive-foreground: var(--destructive-foreground);
+    --radius-xl: var(--radius);
+    --radius-2xl: var(--radius);
+    --radius-3xl: var(--radius);
 }
 
 :root {
-    --background: oklch(0.223 0.0183 279.84);
-    --foreground: oklch(1 0 0);
-    --card: oklch(0.2498 0.0243 281.29);
-    --card-foreground: oklch(0.9838 0.0035 247.86);
-    --popover: oklch(0.2498 0.0243 281.29);
-    --popover-foreground: oklch(1 0 0);
-    --primary: oklch(0.6317 0.1989 275.24);
-    --primary-foreground: oklch(1 0 0);
-    --secondary: oklch(0.2883 0.0304 276.56);
-    --secondary-foreground: oklch(0.6275 0.0255 283.24);
-    --muted: oklch(0.2498 0.0243 281.29);
-    --muted-foreground: oklch(0.701 0.0199 275.78);
-    --accent: oklch(0.321 0.0242 281.73);
-    --accent-foreground: oklch(0.9838 0.0035 247.86);
-    --destructive: oklch(0.3959 0.1331 25.72);
-    --border: oklch(0.353 0.0327 282.22);
-    --input: oklch(0.28 0.0369 259.97);
-    --ring: oklch(0.6317 0.1989 275.24);
-    --chart-1: var(--primary);
-    --chart-2: oklch(from var(--primary) calc(l - 0.09) calc(c * 0.92) h);
-    --chart-3: oklch(from var(--primary) calc(l - 0.18) calc(c * 0.84) h);
-    --chart-4: oklch(from var(--primary) calc(l - 0.27) calc(c * 0.76) h);
-    --chart-5: oklch(from var(--primary) calc(l - 0.36) calc(c * 0.68) h);
-    --radius: 0.5rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
-    --destructive-foreground: oklch(0.9838 0.0035 247.86);
-}
-
-.dark {
-    --background: oklch(0.223 0.0183 279.84);
-    --foreground: oklch(1 0 0);
-    --card: oklch(0.2498 0.0243 281.29);
-    --card-foreground: oklch(0.9838 0.0035 247.86);
-    --popover: oklch(0.2498 0.0243 281.29);
-    --popover-foreground: oklch(1 0 0);
-    --primary: oklch(0.6317 0.1989 275.24);
-    --primary-foreground: oklch(1 0 0);
-    --secondary: oklch(0.2883 0.0304 276.56);
-    --secondary-foreground: oklch(0.6275 0.0255 283.24);
-    --muted: oklch(0.2498 0.0243 281.29);
-    --muted-foreground: oklch(0.701 0.0199 275.78);
-    --accent: oklch(0.321 0.0242 281.73);
-    --accent-foreground: oklch(0.9838 0.0035 247.86);
-    --destructive: oklch(0.3959 0.1331 25.72);
-    --border: oklch(0.353 0.0327 282.22);
-    --input: oklch(0.28 0.0369 259.97);
-    --ring: oklch(0.6317 0.1989 275.24);
-    --chart-1: var(--primary);
-    --chart-2: oklch(from var(--primary) calc(l - 0.09) calc(c * 0.92) h);
-    --chart-3: oklch(from var(--primary) calc(l - 0.18) calc(c * 0.84) h);
-    --chart-4: oklch(from var(--primary) calc(l - 0.27) calc(c * 0.76) h);
-    --chart-5: oklch(from var(--primary) calc(l - 0.36) calc(c * 0.68) h);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
-    --destructive-foreground: oklch(0.9838 0.0035 247.86);
-    --radius: 0.5rem;
+    /* 紙とインク:わずかに暖色へ寄せた白と、近黒 */
+    --background: #fbfaf8;
+    --foreground: #16161a;
+    --card: #fbfaf8;
+    --card-foreground: #16161a;
+    --popover: #ffffff;
+    --popover-foreground: #16161a;
+    /* 主ボタンはインクの塗り */
+    --primary: #16161a;
+    --primary-foreground: #fbfaf8;
+    --secondary: #f4f2ee;
+    --secondary-foreground: #16161a;
+    --muted: #f4f2ee;
+    --muted-foreground: #6e6e76;
+    --accent: #f1eee9;
+    --accent-foreground: #16161a;
+    --destructive: #9a3a2f;
+    --destructive-foreground: #fbfaf8;
+    --border: #e4e1db;
+    --input: #dad6ce;
+    /* アクセントは濃い藍1色。リンクとフォーカスにだけ使う */
+    --ring: #2a4e8f;
+    --link: #2a4e8f;
+    --link-hover: #1b3a70;
+    --rule: #e4e1db;
+    --rule-strong: #cfcbc3;
+    --ink-2: #40404a;
+    --ink-3: #6e6e76;
+    --ink-4: #8d8a84;
+    --radius: 0.375rem;
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
     }
   body {
     @apply bg-background text-foreground;
-    /* 画面上部にプライマリカラーのほのかなグロー */
-    background-image:
-      radial-gradient(900px 420px at 50% -120px, color-mix(in oklch, var(--primary) 14%, transparent), transparent 70%);
-    background-repeat: no-repeat;
+    font-feature-settings: "palt";
     }
   html {
     @apply font-sans;
+    -webkit-font-smoothing: antialiased;
+    }
+  h1, h2, h3 {
+    @apply font-serif;
     }
   ::selection {
-    background: color-mix(in oklch, var(--primary) 40%, transparent);
-    color: var(--foreground);
+    background: #dfe4ef;
+    color: #16161a;
   }
-  /* ダークテーマに合わせた細身のスクロールバー */
+  /* 罫線に馴染む細いスクロールバー */
   ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 11px;
+    height: 11px;
   }
   ::-webkit-scrollbar-thumb {
-    background: color-mix(in oklch, var(--border) 80%, transparent);
+    background: #dad6ce;
     border-radius: 8px;
-    border: 2px solid var(--background);
+    border: 3px solid var(--background);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--border);
+    background: #cfcbc3;
   }
   ::-webkit-scrollbar-track {
     background: transparent;
@@ -172,54 +127,60 @@
 
 /* ---- 記事本文(HTMLで書かれた content 用のスタイル) ---- */
 @layer components {
+  .article-body {
+    @apply text-[15.5px] leading-[2] text-[#2c2c34];
+  }
   .article-body h2 {
-    @apply mt-7 mb-2 border-b pb-1.5 text-lg font-bold;
+    @apply mt-12 mb-4 font-serif text-[23px] font-semibold leading-[1.6] text-foreground;
   }
   .article-body h3 {
-    @apply mt-5 mb-1.5 text-base font-bold;
+    @apply mt-8 mb-3 text-[17px] font-bold leading-[1.7] text-foreground;
   }
   .article-body p {
-    @apply my-2.5;
+    @apply my-4;
   }
   .article-body a {
-    @apply underline underline-offset-2;
-    color: oklch(0.78 0.13 275.24); /* primaryを明るくした紫。ダーク背景でもコントラスト比4.5:1以上 */
+    @apply underline decoration-[#b9c3d8] underline-offset-[3px] transition-colors;
+    color: var(--link);
   }
   .article-body a:hover {
-    color: oklch(0.86 0.1 275.24);
+    color: var(--link-hover);
+    text-decoration-color: currentColor;
   }
   .article-body ul {
-    @apply my-2.5 ml-5 list-disc;
+    @apply my-4 ml-6 list-disc space-y-2.5;
   }
   .article-body ol {
-    @apply my-2.5 ml-5 list-decimal;
+    @apply my-4 ml-6 list-decimal space-y-2.5;
   }
-  .article-body li {
-    @apply my-0.5;
+  .article-body li::marker {
+    @apply text-[#8d8a84];
+  }
+  .article-body strong {
+    @apply font-bold text-foreground;
   }
   .article-body code {
-    @apply rounded border bg-muted px-1.5 py-0.5 font-mono text-[0.85em];
+    @apply rounded border border-[#e4e1db] bg-[#f1eee9] px-1.5 py-0.5 font-mono text-[0.86em];
   }
   .article-body pre {
-    @apply my-3 overflow-x-auto rounded-lg border bg-background p-4 text-foreground;
+    @apply my-5 overflow-x-auto rounded-md border border-[#e4e1db] bg-[#f4f2ee] p-4 font-mono text-[13px] leading-[1.75] text-[#2c2c34];
   }
   .article-body pre code {
     @apply border-0 bg-transparent p-0 text-inherit;
   }
   .article-body blockquote {
-    @apply my-3 border-l-4 pl-4 text-muted-foreground;
+    @apply my-5 border-l-2 border-[#cfcbc3] py-1 pl-5 text-[15px] leading-[1.95] text-[#6e6e76];
   }
   .article-body img {
-    @apply max-w-full rounded-lg;
+    @apply my-5 max-w-full rounded-md border border-[#e4e1db];
   }
   .article-body table {
-    @apply my-3 w-full border-collapse text-sm;
-  }
-  .article-body th,
-  .article-body td {
-    @apply border px-3 py-1.5;
+    @apply my-5 w-full border-collapse text-sm;
   }
   .article-body th {
-    @apply bg-muted;
+    @apply border-b border-foreground px-3.5 py-3 text-left text-[12.5px] font-bold tracking-[0.02em];
+  }
+  .article-body td {
+    @apply border-b border-[#e4e1db] px-3.5 py-3 align-top leading-[1.8] text-[#40404a];
   }
 }

@@ -22,15 +22,15 @@ export type Article = {
 // ---- カテゴリ定義 ----
 // 新しいカテゴリを増やしたいときはここに追加する
 export const CATEGORIES: Category[] = [
-  { id: "chatgpt", name: "ChatGPT / OpenAI", color: "#10a37f", description: "ChatGPT・GPTシリーズなどOpenAI関連の情報" },
-  { id: "claude", name: "Claude / Anthropic", color: "#d97757", description: "Claude・Claude CodeなどAnthropic関連の情報" },
-  { id: "gemini", name: "Gemini / Google", color: "#4285f4", description: "Gemini・NotebookLMなどGoogle関連の情報" },
-  { id: "image", name: "画像生成AI", color: "#a855f7", description: "Midjourney・Stable Diffusionなど画像生成AI" },
-  { id: "video", name: "動画・音声AI", color: "#ec4899", description: "動画生成・音声合成・音楽生成などのAI" },
-  { id: "coding", name: "AIコーディング", color: "#f59e0b", description: "Claude Code・Copilot・CursorなどAI開発ツール" },
-  { id: "local", name: "ローカルLLM", color: "#64748b", description: "Ollama・ローカル環境で動かすAIモデル" },
-  { id: "news", name: "ニュース・動向", color: "#0ea5e9", description: "AI業界の最新ニュースやトレンド" },
-  { id: "howto", name: "活用ノウハウ", color: "#22c55e", description: "プロンプトの書き方・便利な使い方など" },
+  { id: "chatgpt", name: "ChatGPT / OpenAI", color: "#3F8F72", description: "ChatGPT・GPTシリーズなどOpenAI関連の情報" },
+  { id: "claude", name: "Claude / Anthropic", color: "#B3714A", description: "Claude・Claude CodeなどAnthropic関連の情報" },
+  { id: "gemini", name: "Gemini / Google", color: "#3F6FB5", description: "Gemini・NotebookLMなどGoogle関連の情報" },
+  { id: "image", name: "画像生成AI", color: "#8E6AA8", description: "Midjourney・Stable Diffusionなど画像生成AI" },
+  { id: "video", name: "動画・音声AI", color: "#B45C86", description: "動画生成・音声合成・音楽生成などのAI" },
+  { id: "coding", name: "AIコーディング", color: "#B98A3C", description: "Claude Code・Copilot・CursorなどAI開発ツール" },
+  { id: "local", name: "ローカルLLM", color: "#6E7480", description: "Ollama・ローカル環境で動かすAIモデル" },
+  { id: "news", name: "ニュース・動向", color: "#3E7FA6", description: "AI業界の最新ニュースやトレンド" },
+  { id: "howto", name: "活用ノウハウ", color: "#4E8B54", description: "プロンプトの書き方・便利な使い方など" },
 ]
 
 // ---- 記事データ ----

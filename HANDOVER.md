@@ -1,6 +1,6 @@
 # HANDOVER.md
 
-- 最終更新: 2026-08-15(記事は計8件: +WebMCP×Cloudflare、+同検証編、+Project/Skill/MCP/APIの違い。動画由来の記事は著作権配慮で独自構成に書き直す方針)
+- 最終更新: 2026-08-20(デザイン全面刷新。記事は計13件)
 
 ## 今回やったこと(追記: 公開)
 
@@ -20,7 +20,21 @@
 
 ## プロジェクト概要
 
-AIについて調べた記事をカテゴリ別に載せていくサイト「AI調査ノート」。Vite + React + TypeScript + Tailwind CSS v4 + shadcn/ui 構成。閲覧は `npm run dev`。
+AIについて調べた記事をカテゴリ別に載せていくサイト「AI調査ノート」。Vite + React + TypeScript + Tailwind CSS v4 構成。閲覧は公開URL(https://ll726.github.io/ai-research-note/)、ローカルは `npm run dev`(ポート5310)。
+
+## 今回やったこと(2026-08-20: デザイン全面刷新)
+
+- Claude Design でデザイン案を作成(トップ / 記事一覧 / 記事詳細 / デザイン基礎の4アートボード)
+  → https://claude.ai/code/artifact/cbf9bce7-261e-4ecd-abaa-f9fe00cf1ca9
+- 方向性を Linear風ダーク紫 → **Apple / Linear / Notion 系のライトテーマ**に変更
+  - 紙色 `#fbfaf8` / インク `#16161a` / 罫線 `#e4e1db` / アクセントは藍 `#2a4e8f` 1色のみ
+  - 紫グラデーション・背景グロー・カード・大きな角丸を全廃(角丸は最大6px、影なし)
+  - 書体を3種に:見出し=Zen Old Mincho(明朝)、本文=Zen Kaku Gothic New、日付=IBM Plex Mono
+  - カテゴリ色9種を彩度・明度の揃った落ち着いた色に差し替え(`articles.ts`)
+  - 記事本文は680px幅に固定(一行40文字前後)
+- 不要になった shadcn/ui コンポーネント(button/card/badge/input/separator)、CategoryIcon.tsx、globals.css を削除
+- 機能(検索・絞り込み・関連記事・読了時間・ルーティング)は一切変更なし
+- アクセシビリティ実測: 全テキスト 4.85:1 以上、タッチ時44px以上、320px幅で横スクロールなし
 
 ## 今回やったこと
 
@@ -34,7 +48,7 @@ AIについて調べた記事をカテゴリ別に載せていくサイト「AI�
 - shadcn公式MCPサーバー設定(`.mcp.json`、npx shadcn@latest mcp)
 - `npm run build` 成功、ブラウザで表示確認済み(コンソールエラーなし)
 
-## 今回やったこと(追記: Linearデザイン適用)
+## 過去の作業(追記: Linearデザイン適用 ※2026-08-20の刷新で置き換え済み)
 
 - Better Design の公開レジストリから Linear テーマを適用(APIキー不要)
   - `npx shadcn@latest add https://www.better-design.com/registry/linear/globals.json` でテーマトークン導入(ダーク紫基調)
@@ -54,11 +68,13 @@ AIについて調べた記事をカテゴリ別に載せていくサイト「AI�
 ## 次にやること(優先順)
 
 1. 実際のAI調査記事を `src/data/articles.ts` の `ARTICLES` 先頭に追加していく
-2. Better Design のテーマ適用を試す(例: linear テーマ)
-3. 記事が増えたらページネーション検討
+2. 記事が増えたらページネーション検討
+3. 必要ならダークテーマの追加(現在はライトのみ)
 
 ## ハマりポイント・注意点
 
+- 書体はGoogle Fonts。`src/index.css` の `@import` ではなく **`index.html` の `<link>`** で読み込む(CSSの@importは他ルールより後になり警告が出るため)
+- 二次テキストの色は `--ink-3: #6e6e76` が下限(これより薄いとコントラスト4.5:1を割る)。`--ink-4` は装飾専用で文字色に使わない
 - shadcn CLI 4.x は `init` に `-b(ライブラリ) -p(プリセット)` が必要。対話プロンプトはCLI環境で使えないのでフラグ指定必須
 - TypeScript 6 で `baseUrl` が非推奨 → tsconfig は `paths` のみで設定している(`baseUrl` を足すとビルドが落ちる)
 - 記事の `id` は日付+連番で重複禁止。`category` は `CATEGORIES` の id と一致させる

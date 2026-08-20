@@ -1,7 +1,8 @@
 # AI調査ノート
 
 いろいろなAIについて調べたことをカテゴリ別にまとめていくサイト。
-**Vite + React + TypeScript + Tailwind CSS + shadcn/ui** 構成。
+**Vite + React + TypeScript + Tailwind CSS** 構成。
+デザインは Apple / Linear / Notion 系のライトテーマ(暖色の紙色・近黒インク・藍アクセント1色、カードを使わず罫線と余白で構成)。
 
 ## 公開URL(どこからでも開ける)
 
@@ -43,19 +44,19 @@ npm run dev
 
 ```
 src/
-  data/articles.ts   … ★記事とカテゴリのデータ(普段編集するのはここだけ)
-  App.tsx            … ルーティング(#/ トップ、#/cat/xx 絞り込み、#/article/xx 詳細)
-  pages/Home.tsx     … トップページ(カテゴリ・検索・記事一覧)
-  pages/ArticlePage.tsx … 記事詳細ページ
-  components/        … ヘッダー・記事カードなど
-  components/ui/     … shadcn/ui コンポーネント(自動生成)
-  index.css          … テーマ・記事本文スタイル
-old-site/            … 移行前の旧静的サイト(参考用)
+  data/articles.ts      … ★記事とカテゴリのデータ(普段編集するのはここだけ)
+  App.tsx               … ルーティングとフッター
+  pages/Landing.tsx     … トップ(ヒーロー・カテゴリ・最新記事)
+  pages/Articles.tsx    … 記事一覧(検索・カテゴリ絞り込み)
+  pages/ArticlePage.tsx … 記事詳細
+  components/           … ヘッダー・記事行
+  index.css             … テーマ変数・記事本文スタイル
+old-site/               … 移行前の旧静的サイト(参考用)
 ```
 
-## shadcn/ui コンポーネントの追加
+## UIコンポーネントの追加
 
-shadcn公式MCPサーバー設定済み(`.mcp.json`)。Claude Code で「○○コンポーネントを追加して」と頼むか、手動なら:
+shadcn公式MCPサーバー設定済み(`.mcp.json`)。必要になったら Claude Code に頼むか、手動なら:
 
 ```bash
 npx shadcn@latest add dialog

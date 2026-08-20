@@ -1,9 +1,5 @@
 import { useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
 import { ArticleRow } from "@/components/ArticleCard"
-import { CategoryIcon } from "@/components/CategoryIcon"
 import { ARTICLES, categoryMap } from "@/data/articles"
 
 export function ArticlePage({ id }: { id: string }) {
@@ -18,15 +14,14 @@ export function ArticlePage({ id }: { id: string }) {
 
   if (!article) {
     return (
-      <main className="mx-auto max-w-4xl px-4 py-8">
-        <Card className="p-10 text-center">
-          <p className="text-sm text-muted-foreground">記事が見つかりませんでした。</p>
-          <div className="mt-5">
-            <Button asChild variant="secondary" size="sm">
-              <a href="#/">トップページへ戻る</a>
-            </Button>
-          </div>
-        </Card>
+      <main className="mx-auto max-w-5xl px-6 py-24 text-center sm:px-14">
+        <p className="text-sm text-ink-3">記事が見つかりませんでした。</p>
+        <a
+          href="#/articles"
+          className="mt-6 inline-flex h-11 items-center justify-center rounded-md border border-rule-strong px-[22px] text-sm font-medium transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          記事一覧へ戻る
+        </a>
       </main>
     )
   }
@@ -40,35 +35,29 @@ export function ArticlePage({ id }: { id: string }) {
     .slice(0, 5)
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-8">
-      <Button asChild variant="ghost" size="sm" className="-ml-2 mb-4">
-        <a href="#/articles">← 記事一覧へ戻る</a>
-      </Button>
+    <main className="mx-auto w-full max-w-[680px] px-6 pb-4 pt-12 sm:px-0 sm:pt-14">
+      <a
+        href="#/articles"
+        className="inline-flex items-center gap-1.5 text-[12.5px] text-ink-3 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      >
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path
+            d="M8.4 3.2L4.6 7l3.8 3.8"
+            stroke="currentColor"
+            strokeWidth="1.35"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+        記事一覧へ戻る
+      </a>
 
-      <Card className="overflow-hidden p-6 pt-0 sm:p-8 sm:pt-0">
-        {/* カテゴリ色のカバーバナー */}
-        <div
-          aria-hidden="true"
-          className="relative -mx-6 mb-6 h-28 overflow-hidden border-b border-border/60 sm:-mx-8 sm:mb-8"
-          style={{
-            background: cat
-              ? `linear-gradient(135deg, color-mix(in srgb, ${cat.color} 24%, var(--card)), var(--card) 75%)`
-              : "var(--secondary)",
-          }}
-        >
-          {cat && (
-            <CategoryIcon
-              id={cat.id}
-              className="absolute -bottom-6 right-6 size-28 opacity-20"
-              style={{ color: cat.color }}
-            />
-          )}
-        </div>
-        <div className="flex flex-wrap items-center gap-2.5 text-xs text-muted-foreground">
+      <article>
+        <div className="mt-9 flex flex-wrap items-center gap-x-3.5 gap-y-2">
           {cat && (
             <a
               href={`#/cat/${cat.id}`}
-              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary/60 px-2.5 py-1 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="inline-flex items-center gap-[7px] text-[12.5px] text-ink-2 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <span
                 aria-hidden="true"
@@ -78,32 +67,36 @@ export function ArticlePage({ id }: { id: string }) {
               {cat.name}
             </a>
           )}
-          <time className="font-mono">{article.date}</time>
-          <span aria-hidden="true" className="text-border">|</span>
-          <span>約{readMinutes}分で読めます</span>
+          <span aria-hidden="true" className="h-3 w-px bg-input" />
+          <time dateTime={article.date} className="font-mono text-[11.5px] text-ink-3">
+            {article.date}
+          </time>
+          <span aria-hidden="true" className="h-3 w-px bg-input" />
+          <span className="text-xs text-ink-3">約{readMinutes}分で読めます</span>
         </div>
-        <h1 className="mt-4 text-xl font-semibold leading-snug tracking-tight sm:text-2xl">
+
+        <h1 className="mt-5 font-serif text-[27px] font-semibold leading-[1.45] tracking-[0.005em] sm:text-[36px]">
           {article.title}
         </h1>
-        <Separator className="my-6" />
+
+        {article.summary && (
+          <p className="mt-6 text-[16px] leading-[2] text-ink-2 sm:text-[16.5px]">{article.summary}</p>
+        )}
+
         <div
-          className="article-body text-[15px] leading-7 text-card-foreground"
+          className="article-body mt-11 border-t border-rule pt-11"
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
-      </Card>
+      </article>
 
       {related.length > 0 && (
-        <section aria-label="同じカテゴリの記事" className="mt-10">
-          <h2 className="mb-3 text-[13px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <section aria-label="同じカテゴリの記事" className="mt-16">
+          <h2 className="border-b border-foreground pb-[14px] font-serif text-[17px] tracking-[0.01em]">
             同じカテゴリの記事
           </h2>
-          <Card className="overflow-hidden p-0">
-            <div className="divide-y divide-border/60">
-              {related.map((a) => (
-                <ArticleRow key={a.id} article={a} showCategory={false} />
-              ))}
-            </div>
-          </Card>
+          {related.map((a) => (
+            <ArticleRow key={a.id} article={a} showCategory={false} compact />
+          ))}
         </section>
       )}
     </main>
