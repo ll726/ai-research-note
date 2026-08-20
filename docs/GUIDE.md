@@ -170,7 +170,8 @@ AI調査/
    ├─ components/
    │   ├─ Header.tsx           … 固定ヘッダー + ナビ
    │   ├─ ArticleCard.tsx      … 一覧の記事行(ArticleRow)
-   │   └─ Header.tsx           … ヘッダーとサイトマーク(SiteMark)
+   │   ├─ Header.tsx           … ヘッダーとサイトマーク(SiteMark)
+   │   └─ HeroArt.tsx          … トップのヒーロー作図(SVG)
    └─ lib/utils.ts             … cn() ユーティリティ
 ```
 
@@ -205,6 +206,7 @@ src/data/articles.ts
 - `src/index.css` にテーマ変数を定義(紙色 `#fbfaf8` / インク `#16161a` / 罫線 `#e4e1db` / アクセント `#2a4e8f`)
 - 書体は3種:見出し=Zen Old Mincho(明朝)、本文=Zen Kaku Gothic New、日付・件数=IBM Plex Mono(`index.html` で読み込み)
 - カードを使わず、1pxの罫線と余白で構造を作る。角丸は最大6px、影は使わない
+- 画像は写真を使わず、`HeroArt.tsx` の作図(SVG)と `public/favicon.svg` のサイトマークのみ。記事内の画像は本文HTMLに `<img>` を書けば罫線付きで整形される
 - 記事本文(HTML文字列)は `.article-body` クラス配下のスタイルで整形
 - カテゴリ色は各カテゴリの `color` を `style` 属性で直接適用し、`color-mix()` で背景の淡色を生成
 - 画面上部に紫のグラデーショングロー、スクロールバー・選択色もテーマに合わせて調整

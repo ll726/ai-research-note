@@ -35,6 +35,9 @@ AIについて調べた記事をカテゴリ別に載せていくサイト「AI�
 - 不要になった shadcn/ui コンポーネント(button/card/badge/input/separator)、CategoryIcon.tsx、globals.css を削除
 - 機能(検索・絞り込み・関連記事・読了時間・ルーティング)は一切変更なし
 - アクセシビリティ実測: 全テキスト 4.85:1 以上、タッチ時44px以上、320px幅で横スクロールなし
+- 画像を追加: `src/components/HeroArt.tsx`(トップのヒーロー作図・SVG)と `public/favicon.svg`(サイトマーク。従来は紫のVite既定アイコンだった)
+- 未使用アセット(hero.png / react.svg / vite.svg / icons.svg)を削除
+- 記事内に画像を入れたい場合は本文HTMLに `<img src="...">` を書けばよい(罫線・角丸つきで整形される)
 
 ## 今回やったこと
 

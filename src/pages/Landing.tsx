@@ -1,4 +1,5 @@
 import { ArticleRow } from "@/components/ArticleCard"
+import { HeroArt } from "@/components/HeroArt"
 import { ARTICLES, CATEGORIES, sortedArticles } from "@/data/articles"
 
 // 見出しと右肩の補足を、濃い罫線で受ける共通の見出し行
@@ -18,7 +19,8 @@ export function Landing() {
   return (
     <main className="mx-auto max-w-5xl px-6 sm:px-14">
       {/* ヒーロー */}
-      <section className="pt-16 sm:pt-[104px]">
+      <section className="flex items-center gap-16 pt-16 sm:pt-[104px]">
+        <div className="min-w-0 flex-1">
         <p className="font-mono text-[11px] tracking-[0.16em] text-ink-3">AI RESEARCH NOTE</p>
         <h1 className="mt-6 max-w-[16em] font-serif text-[34px] font-semibold leading-[1.32] tracking-[-0.01em] sm:text-[54px] sm:leading-[1.3]">
           AIの「いま」を、
@@ -45,6 +47,8 @@ export function Landing() {
         <p className="mt-11 font-mono text-[11.5px] tracking-[0.04em] text-ink-3">
           {ARTICLES.length} 記事 &nbsp;·&nbsp; {CATEGORIES.length} カテゴリ &nbsp;·&nbsp; 最終更新 {latestDate}
         </p>
+        </div>
+        <HeroArt className="hidden w-[360px] shrink-0 lg:block" />
       </section>
 
       {/* カテゴリ */}
